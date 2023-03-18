@@ -1,0 +1,39 @@
+.ship-detail {
+    margin: 3rem 3rem;
+}
+
+.ship-header {
+
+}
+
+.header {
+    margin-bottom: 24px;
+
+    cursor: pointer;
+}
+
+.link-text {
+    color: #185cce;
+
+    font-size: 14px;
+}
+
+.name {
+    margin-bottom: 38px;
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.ship-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    margin-right: 5rem;
+}
+
+.value {
+    color: #185cce;
+}

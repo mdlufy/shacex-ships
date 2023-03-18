@@ -1,0 +1,64 @@
+:host {
+    margin-bottom: 2.5rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.ship {
+    border-radius: 3px;
+
+    transition: box-shadow 0.4s, border-color 0.4s;
+}
+
+.ship:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+
+    cursor: pointer;
+}
+
+.name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin-bottom: 26px;
+}
+
+.name-value {
+    font-size: 18px;
+    font-weight: 700;
+
+    margin-right: 1rem;
+}
+
+.properties {
+    margin-bottom: 26px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.item:not(:last-child) {
+    margin-right: 13rem;
+}
+
+.header {
+    margin-right: 5rem;
+}
+
+.value {
+    color: #185cce;
+}
+
+.divider {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.icon {
+    margin-top: -1;
+}

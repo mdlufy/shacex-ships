@@ -1,0 +1,13 @@
+.ships-page {
+    margin: 2.5rem 2rem;
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header {
+    font-size: x-large;
+    font-weight: 600;
+}

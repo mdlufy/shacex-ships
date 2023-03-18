@@ -1,0 +1,35 @@
+<div class="ships-page">
+    <ng-container [ngSwitch]="loadingState$ | async">
+        <ng-container *ngIf="shipsView$ | async as shipsView">
+            <ng-container *ngSwitchCase="loadingState.LOADING">
+                <ng-container *ngTemplateOutlet="loading"></ng-container>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="loadingState.SUCCESS">
+                <app-ships-list [shipsView]="shipsView"></app-ships-list>
+
+                <app-filters></app-filters>
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="loadingState.LOADING_ERROR">
+            <ng-container *ngTemplateOutlet="error"></ng-container>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="loadingState.NOT_FOUND">
+            <ng-container *ngTemplateOutlet="empty"></ng-container>
+        </ng-container>
+    </ng-container>
+</div>
+
+<ng-template #loading>
+    <h1>Loading</h1>
+</ng-template>
+
+<ng-template #error>
+    <h1>Error</h1>
+</ng-template>
+
+<ng-template #empty>
+    <h1>Empty</h1>
+</ng-template>
