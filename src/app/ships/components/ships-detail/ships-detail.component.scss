@@ -3,35 +3,50 @@
 }
 
 .ship-header {
-
-}
-
-.header {
-    margin-bottom: 24px;
+    margin-bottom: 18px;
 
     cursor: pointer;
 }
 
-.link-text {
+.text {
+    font-size: 16px;
     color: #185cce;
-
-    font-size: 14px;
 }
 
 .name {
-    margin-bottom: 38px;
+    margin-bottom: 36px;
 
     font-size: 24px;
     font-weight: 700;
 }
 
-.ship-info {
+.info {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
-.header {
-    margin-right: 5rem;
+.properties {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+
+    &-header {
+        margin-right: 5rem;
+    }
+
+    &-value {
+        color: #185cce;
+    }
+}
+
+.item:not(:last-child) {
+    margin-bottom: 5px;
 }
 
 .value {

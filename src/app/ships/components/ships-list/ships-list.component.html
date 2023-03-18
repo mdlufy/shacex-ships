@@ -1,12 +1,7 @@
-<div class="ships">
-    <div class="header">
-        <span class="header-value">SpaceX Ships</span>
-    </div>
-
-    <div class="ships-list">
-        <ng-container *ngFor="let shipView of shipsView">
-            <app-ship [shipView]="shipView" (openShip)="openShip($event)">
-            </app-ship>
-        </ng-container>
-    </div>
+<div class="header">
+    <span class="header-value">SpaceX Ships</span>
 </div>
+
+<ng-container *ngFor="let shipView of shipsView">
+    <app-ship [shipView]="shipView" (openShip)="openShip($event)"></app-ship>
+</ng-container>

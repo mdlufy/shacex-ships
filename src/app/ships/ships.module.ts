@@ -13,6 +13,7 @@ import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { ShipsLoadService } from "./+state/ships-view/ships-load/ships-load.service";
 import { ShipsPageService } from "./ships-page/ships-page.service";
+import { RolesListPipe } from "./components/ships-detail/roles-list.pipe";
 
 const EFFECTS_LIST = [ShipsViewEffects];
 
@@ -23,6 +24,7 @@ const EFFECTS_LIST = [ShipsViewEffects];
         ShipsDetailComponent,
         FiltersComponent,
         ShipsListComponent,
+        RolesListPipe,
     ],
     imports: [
         CommonModule,

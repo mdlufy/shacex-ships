@@ -1,22 +1,22 @@
 <div class="ship" (click)="onClick()">
     <div class="name">
         <span class="name-value">{{ shipView.name }}</span>
-        <span class="icon">
-            <img src="assets/arrow.png" />
-        </span>
+        <img src="assets/arrow.png" />
     </div>
 
     <div class="properties">
         <div class="item">
-            <span class="header">Тип</span>
-            <span class="value">{{ shipView.type }}</span>
+            <span class="item-header">Тип</span>
+            <span class="item-value">{{ shipView.type }}</span>
         </div>
 
         <div class="item">
-            <span class="header">Порт</span>
-            <span class="value">{{ shipView.homePort }}</span>
+            <span class="item-header">Порт</span>
+            <span class="item-value">{{ shipView.homePort }}</span>
         </div>
     </div>
+</div>
 
-    <!-- <div class="divider"></div> -->
+<div>
+    <hr class="divider" />
 </div>
