@@ -6,7 +6,7 @@ import {
     OnInit,
     Output,
 } from "@angular/core";
-import { ShipView } from "../../+state/ships-view/ships-view.reducer";
+import { ShipView } from "./../+state/ships-view/ships-view.reducer";
 
 @Component({
     selector: "app-ship",

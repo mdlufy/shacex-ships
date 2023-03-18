@@ -1,5 +1,6 @@
+import { getShipsPaginationPage } from './../ships-filters/ships-filters.selectors';
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { mapShipDtoToShipView, mapShipResponseDtoToShipResponseView } from "../../helpers/ship-mapping.helper";
@@ -7,6 +8,7 @@ import { ShipDto, ShipResponseDto, ShipResponseView } from "../../ships-data/shi
 import { ShipsDataService } from "../../ships-data/ships-data.service";
 import { LoadingState } from '../loading-state';
 import * as ShipsViewActions from "./ships-view.actions";
+import * as ShipsFiltersActions from "../ships-filters/ships-filters.actions";
 import { ShipView } from "./ships-view.reducer";
 
 @Injectable()
@@ -15,8 +17,9 @@ export class ShipsViewEffects {
         this.actions$.pipe(
             ofType(ShipsViewActions.loadShips),
             tap(() => this.store$.dispatch(ShipsViewActions.setShipsViewLoadingState({ loadingState: LoadingState.LOADING }))),
-            switchMap(() =>
-                this.getShipsWithOptions$().pipe(
+            concatLatestFrom((action) => this.store$.select(getShipsPaginationPage)),
+            switchMap(([action, page]) =>
+                this.getShipsWithOptions$(page).pipe(
                     tap(() => this.store$.dispatch(ShipsViewActions.setShipsViewLoadingState({ loadingState: LoadingState.SUCCESS }))),
                     map(({ ships }: ShipResponseView) => ShipsViewActions.loadShipsSuccess({ shipsView: ships })),
                     catchError(() => of(ShipsViewActions.setShipsViewLoadingState({ loadingState: LoadingState.LOADING_ERROR }))),
@@ -39,11 +42,14 @@ export class ShipsViewEffects {
             );
     }
 
-    private getShipsWithOptions$(): Observable<ShipResponseView> {
+    private getShipsWithOptions$(page: number): Observable<ShipResponseView> {
         return this.shipsDataService
-            .fetchShipsWithOptions$()
+            .fetchShipsWithOptions$(page)
             .pipe(
-                map((shipResponse: ShipResponseDto) => mapShipResponseDtoToShipResponseView(shipResponse))
+                map((shipResponse: ShipResponseDto) => mapShipResponseDtoToShipResponseView(shipResponse)),
+                tap(({ page, totalPages }: ShipResponseView) => {
+                    this.store$.dispatch(ShipsFiltersActions.setShipsPaginationState({ pagination: { page, totalPages } }))
+                })
             )
     }
 }

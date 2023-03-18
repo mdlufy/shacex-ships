@@ -1,0 +1,19 @@
+<div class="pagination">
+    <span
+        [hidden]="page === 1"
+        (click)="onPrevious()"
+        class="icon"
+    >
+        <img src="assets/back.png" />
+    </span>
+
+    <span class="page">{{ page }}</span>
+
+    <span
+        [hidden]="page === total"
+        (click)="onNext()"
+        class="icon"
+    >
+        <img src="assets/forward.png" />
+    </span>
+</div>

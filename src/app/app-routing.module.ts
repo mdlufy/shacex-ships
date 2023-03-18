@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { ShipsDetailComponent } from "./ships/components/ships-detail/ships-detail.component";
-import { ShipsPageComponent } from "./ships/ships-page/ships-page.component";
+import { ShipsDetailComponent } from "./ships/ships-detail/ships-detail.component";
+import { ShipsListComponent } from "./ships/ships-list/ships-list.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "ships", pathMatch: "full" },
@@ -10,7 +10,7 @@ const routes: Routes = [
         children: [
             {
                 path: "",
-                component: ShipsPageComponent,
+                component: ShipsListComponent,
             },
             {
                 path: ":id",

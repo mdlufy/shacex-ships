@@ -1,9 +1,9 @@
 import { Observable } from "rxjs";
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { ShipView } from "../../+state/ships-view/ships-view.reducer";
-import { LoadingState } from "../../+state/loading-state";
 import { ShipStore } from "./ship.store";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ShipView } from "../+state/ships-view/ships-view.reducer";
+import { LoadingState } from "../+state/loading-state";
 
 const shipInittialState: ShipView = {
     id: null,

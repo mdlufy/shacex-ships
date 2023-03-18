@@ -1,0 +1,50 @@
+<div class="ships">
+    <div class="header">
+        <span class="header-value">SpaceX Ships</span>
+    </div>
+
+    <ng-container [ngSwitch]="loadingState$ | async">
+        <ng-container *ngSwitchCase="loadingState.LOADING">
+            <ng-container *ngTemplateOutlet="loading"></ng-container>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="loadingState.SUCCESS">
+            <ng-container *ngFor="let shipView of shipsView$ | async">
+                <app-ship
+                    [shipView]="shipView"
+                    (openShip)="openShip($event)"
+                ></app-ship>
+            </ng-container>
+
+            <lib-pagination
+                [page]="(page$ | async)!"
+                [total]="(totalPages$ | async)!"
+                (changePage)="changePage($event)"
+            ></lib-pagination>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="loadingState.LOADING_ERROR">
+            <ng-container *ngTemplateOutlet="error"></ng-container>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="loadingState.NOT_FOUND">
+            <ng-container *ngTemplateOutlet="empty"></ng-container>
+        </ng-container>
+
+        <ng-template #loading>
+            <h1>Loading</h1>
+        </ng-template>
+
+        <ng-template #error>
+            <h1>Error</h1>
+        </ng-template>
+
+        <ng-template #empty>
+            <h1>Empty</h1>
+        </ng-template>
+    </ng-container>
+</div>
+
+<div class="filters">
+    <app-filters></app-filters>
+</div>
