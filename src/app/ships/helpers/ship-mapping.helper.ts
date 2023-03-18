@@ -1,5 +1,9 @@
 import { ShipView } from "../+state/ships-view/ships-view.reducer";
-import { ShipDto } from "../ships-data/ship.dto";
+import {
+    ShipDto,
+    ShipResponseDto,
+    ShipResponseView,
+} from "../ships-data/ship.dto";
 
 export function mapShipDtoToShipView(shipDto: ShipDto): ShipView {
     return {
@@ -8,4 +12,16 @@ export function mapShipDtoToShipView(shipDto: ShipDto): ShipView {
         weight: shipDto.mass_kg,
         yearBuilt: shipDto.year_built,
     };
+}
+
+export function mapShipResponseDtoToShipResponseView(
+    shipResponseDto: ShipResponseDto
+): ShipResponseView {
+    const ships = shipResponseDto.docs.map((doc: ShipDto) => mapShipDtoToShipView(doc));
+
+    return {
+        ...shipResponseDto,
+        totalShips: shipResponseDto.totalDocs,
+        ships,
+    }
 }

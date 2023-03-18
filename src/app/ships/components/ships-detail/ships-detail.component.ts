@@ -29,14 +29,14 @@ export class ShipsDetailComponent implements OnInit {
 
     public loadingState = LoadingState;
 
-    public shipId: string;
+    public shipId: string | null;
 
     constructor(
         private readonly shipStore: ShipStore,
         private route: ActivatedRoute,
         private readonly router: Router
     ) {
-        this.shipId = this.route.snapshot.paramMap.get("id") ?? "";
+        this.shipId = this.route.snapshot.paramMap.get("id");
 
         this.ship$ = this.shipStore.ship$;
         this.loadingState$ = this.shipStore.loadingState$;
@@ -44,7 +44,7 @@ export class ShipsDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.initShipState();
-        this.initCourseObservable();
+        this.initShipObservable();
     }
 
     public onClick(): void {
@@ -58,7 +58,9 @@ export class ShipsDetailComponent implements OnInit {
         });
     }
 
-    private initCourseObservable(): void {
-        this.shipStore.getShipById$(this.shipId);
+    private initShipObservable(): void {
+        if (this.shipId) {
+            this.shipStore.getShipById$(this.shipId);
+        }
     }
 }

@@ -11,7 +11,6 @@ import { ShipsViewEffects } from "./+state/ships-view/ships-view.effects";
 import { shipsViewReducer } from "./+state/ships-view/ships-view.reducer";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
-import { ShipsLoadService } from "./+state/ships-view/ships-load/ships-load.service";
 import { ShipsPageService } from "./ships-page/ships-page.service";
 import { RolesListPipe } from "./components/ships-detail/roles-list.pipe";
 
@@ -31,6 +30,6 @@ const EFFECTS_LIST = [ShipsViewEffects];
         StoreModule.forFeature(FEATURE_SHIPS_VIEW, shipsViewReducer),
         EffectsModule.forFeature(EFFECTS_LIST),
     ],
-    providers: [ShipsDataService, ShipsLoadService, ShipsPageService],
+    providers: [ShipsDataService, ShipsPageService],
 })
 export class ShipsModule {}

@@ -1,3 +1,5 @@
+import { ShipView } from "../+state/ships-view/ships-view.reducer";
+
 export interface ShipDto {
     id: string;
     name: string;
@@ -6,4 +8,20 @@ export interface ShipDto {
     mass_kg: number;
     year_built: number;
     roles: string[];
+}
+
+export interface ShipResponseDto {
+    docs: ShipDto[];
+    totalDocs: number;
+    limit: number;
+    totalPages: number;
+    page: number;
+}
+
+export interface ShipResponseView extends ShipResponseDto {
+    ships: ShipView[];
+    page: number;
+    limit: number;
+    totalShips: number;
+    totalPages: number;
 }
