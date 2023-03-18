@@ -3,8 +3,8 @@ import { Observable, shareReplay } from "rxjs";
 import { ShipResponseDto } from "../ships-data/ship.dto";
 import { ShipsDataService, ShipsListOptions } from "../ships-data/ships-data.service";
 
-
 const CACHE_SIZE = 1;
+const UNSUBSCRIBE_ZERO_CONSUMERS = true;
 
 @Injectable()
 export class ShipsCacheService {
@@ -17,7 +17,7 @@ export class ShipsCacheService {
 
         if (!this.shipsCache$.has(shipsRequestOptions)) {
             const response = this.shipsDataService.fetchShips$(options).pipe(
-                shareReplay({ bufferSize: CACHE_SIZE, refCount: true }),
+                shareReplay({ bufferSize: CACHE_SIZE, refCount: UNSUBSCRIBE_ZERO_CONSUMERS }),
             );
 
             this.shipsCache$.set(shipsRequestOptions, response);
