@@ -11,7 +11,7 @@ import { ShipView } from "../../+state/ships-view/ships-view.reducer";
 @Component({
     selector: "app-ship",
     templateUrl: "./ship.component.html",
-    styleUrls: ["./ship.component.css"],
+    styleUrls: ["./ship.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShipComponent implements OnInit {

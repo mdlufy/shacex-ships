@@ -10,7 +10,7 @@ import { ShipView } from "../../+state/ships-view/ships-view.reducer";
 @Component({
     selector: "app-ships-list",
     templateUrl: "./ships-list.component.html",
-    styleUrls: ["./ships-list.component.css"],
+    styleUrls: ["./ships-list.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShipsListComponent implements OnInit {

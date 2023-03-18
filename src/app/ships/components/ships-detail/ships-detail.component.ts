@@ -18,7 +18,7 @@ const shipInittialState: ShipView = {
 @Component({
     selector: "app-ships-detail",
     templateUrl: "./ships-detail.component.html",
-    styleUrls: ["./ships-detail.component.css"],
+    styleUrls: ["./ships-detail.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [ShipStore],
 })

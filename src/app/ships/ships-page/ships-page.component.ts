@@ -7,7 +7,7 @@ import { ShipsPageService } from "./ships-page.service";
 @Component({
     selector: "app-ships-page",
     templateUrl: "./ships-page.component.html",
-    styleUrls: ["./ships-page.component.css"],
+    styleUrls: ["./ships-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShipsPageComponent implements OnInit {
