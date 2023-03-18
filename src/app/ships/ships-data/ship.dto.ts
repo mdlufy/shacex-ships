@@ -20,8 +20,8 @@ export interface ShipResponseDto {
 
 export interface ShipResponseView extends ShipResponseDto {
     ships: ShipView[];
-    page: number;
     limit: number;
-    totalShips: number;
+    page: number;
     totalPages: number;
+    totalShips: number;
 }

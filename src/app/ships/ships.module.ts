@@ -15,6 +15,7 @@ import { ShipsDetailComponent } from "./ships-detail/ships-detail.component";
 import { RolesListPipe } from "./ships-detail/roles-list.pipe";
 import { FiltersComponent } from "./filters/filters.component";
 import { ShipsListComponent } from "./ships-list/ships-list.component";
+import { ShipsCacheService } from "./ships-cache/ships-cache.service";
 
 const EFFECTS_LIST = [ShipsViewEffects];
 
@@ -33,6 +34,6 @@ const EFFECTS_LIST = [ShipsViewEffects];
         StoreModule.forFeature(FEATURE_SHIPS_FILTERS, shipsFiltersReducer),
         EffectsModule.forFeature(EFFECTS_LIST),
     ],
-    providers: [ShipsDataService, ShipsListService],
+    providers: [ShipsDataService, ShipsListService, ShipsCacheService],
 })
 export class ShipsModule {}

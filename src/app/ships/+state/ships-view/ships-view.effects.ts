@@ -1,15 +1,17 @@
-import { getShipsPaginationPage } from './../ships-filters/ships-filters.selectors';
 import { Injectable } from "@angular/core";
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
-import { mapShipDtoToShipView, mapShipResponseDtoToShipResponseView } from "../../helpers/ship-mapping.helper";
-import { ShipDto, ShipResponseDto, ShipResponseView } from "../../ships-data/ship.dto";
-import { ShipsDataService } from "../../ships-data/ships-data.service";
+import { mapShipResponseDtoToShipResponseView } from "../../helpers/ship-mapping.helper";
+import { ShipsCacheService } from '../../ships-cache/ships-cache.service';
+import { ShipResponseDto, ShipResponseView } from "../../ships-data/ship.dto";
+import { ShipsListOptions } from "../../ships-data/ships-data.service";
 import { LoadingState } from '../loading-state';
-import * as ShipsViewActions from "./ships-view.actions";
 import * as ShipsFiltersActions from "../ships-filters/ships-filters.actions";
-import { ShipView } from "./ships-view.reducer";
+import { getShipsPaginationPage } from './../ships-filters/ships-filters.selectors';
+import * as ShipsViewActions from "./ships-view.actions";
+
+const SHIPS_ON_PAGE = 5;
 
 @Injectable()
 export class ShipsViewEffects {
@@ -19,7 +21,7 @@ export class ShipsViewEffects {
             tap(() => this.store$.dispatch(ShipsViewActions.setShipsViewLoadingState({ loadingState: LoadingState.LOADING }))),
             concatLatestFrom((action) => this.store$.select(getShipsPaginationPage)),
             switchMap(([action, page]) =>
-                this.getShipsWithOptions$(page).pipe(
+                this.getShips$(page).pipe(
                     tap(() => this.store$.dispatch(ShipsViewActions.setShipsViewLoadingState({ loadingState: LoadingState.SUCCESS }))),
                     map(({ ships }: ShipResponseView) => ShipsViewActions.loadShipsSuccess({ shipsView: ships })),
                     catchError(() => of(ShipsViewActions.setShipsViewLoadingState({ loadingState: LoadingState.LOADING_ERROR }))),
@@ -31,20 +33,16 @@ export class ShipsViewEffects {
     constructor(
         private actions$: Actions,
         private store$: Store,
-        private shipsDataService: ShipsDataService,
+        private shipsCacheService: ShipsCacheService,
     ) {}
 
-    private getShips$(): Observable<ShipView[]> {
-        return this.shipsDataService
-            .fetchShips$()
-            .pipe(
-                map((ships: ShipDto[]) => ships.map((ship: ShipDto) => mapShipDtoToShipView(ship))),
-            );
-    }
+    private getShips$(page: number): Observable<ShipResponseView> {
+        const options: ShipsListOptions = {
+            page,
+            limit: SHIPS_ON_PAGE,
+        };
 
-    private getShipsWithOptions$(page: number): Observable<ShipResponseView> {
-        return this.shipsDataService
-            .fetchShipsWithOptions$(page)
+        return this.shipsCacheService.getShips$(options)
             .pipe(
                 map((shipResponse: ShipResponseDto) => mapShipResponseDtoToShipResponseView(shipResponse)),
                 tap(({ page, totalPages }: ShipResponseView) => {
