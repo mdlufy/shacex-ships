@@ -12,11 +12,11 @@ import { ShipsDataService } from "./ships-data/ships-data.service";
 import { LibPaginationModule } from "./ui/lib-pagination/lib-pagination.module";
 import { ShipComponent } from "./ship/ship.component";
 import { ShipsDetailComponent } from "./ships-detail/ships-detail.component";
-import { RolesListPipe } from "./ships-detail/roles-list.pipe";
 import { FiltersComponent } from "./filters/filters.component";
 import { ShipsListComponent } from "./ships-list/ships-list.component";
 import { ShipsCacheService } from "./ships-cache/ships-cache.service";
 import { ReactiveFormsModule } from "@angular/forms";
+import { RolesListPipe } from "./ships-detail/roles-list-pipe/roles-list.pipe";
 
 const EFFECTS_LIST = [ShipsViewEffects];
 

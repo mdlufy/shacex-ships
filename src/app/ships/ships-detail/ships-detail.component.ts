@@ -1,66 +1,55 @@
-import { Observable } from "rxjs";
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { ShipStore } from "./ship.store";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ShipView } from "../+state/ships-view/ships-view.reducer";
+import { BehaviorSubject, Observable } from "rxjs";
 import { LoadingState } from "../+state/loading-state";
-
-const shipInittialState: ShipView = {
-    id: null,
-    name: null,
-    type: null,
-    homePort: null,
-    weight: null,
-    yearBuilt: null,
-    roles: null,
-};
+import { ShipView } from "../+state/ships-view/ships-view.reducer";
+import { ShipOptions } from "../ships-data/ships-data.service";
+import { ShipDetailStore } from "./+state/ship-detail.store";
 
 @Component({
     selector: "app-ships-detail",
     templateUrl: "./ships-detail.component.html",
     styleUrls: ["./ships-detail.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [ShipStore],
+    providers: [ShipDetailStore],
 })
 export class ShipsDetailComponent implements OnInit {
     public ship$: Observable<ShipView>;
-
     public loadingState$: Observable<LoadingState>;
+
+    public shipOptions$: BehaviorSubject<ShipOptions>;
 
     public loadingState = LoadingState;
 
     public shipId: string | null;
 
     constructor(
-        private readonly shipStore: ShipStore,
-        private route: ActivatedRoute,
+        private shipDetailStore: ShipDetailStore,
+        private readonly route: ActivatedRoute,
         private readonly router: Router
     ) {
-        this.shipId = this.route.snapshot.paramMap.get("id");
+        this.ship$ = this.shipDetailStore.ship$;
+        this.loadingState$ = this.shipDetailStore.loadingState$;
 
-        this.ship$ = this.shipStore.ship$;
-        this.loadingState$ = this.shipStore.loadingState$;
+        this.shipId = this.route.snapshot.paramMap.get("id");
     }
 
     ngOnInit(): void {
-        this.initShipState();
-        this.initShipObservable();
+        this.initShipLoadingOptions();
+        this.loadShip();
     }
 
     public onClick(): void {
         this.router.navigate(["../"], { relativeTo: this.route });
     }
 
-    private initShipState(): void {
-        this.shipStore.setState({
-            loadingState: LoadingState.LOADING,
-            ship: shipInittialState,
+    private initShipLoadingOptions(): void {
+        this.shipOptions$ = new BehaviorSubject<ShipOptions>({
+            id: this.shipId ?? "",
         });
     }
 
-    private initShipObservable(): void {
-        if (this.shipId) {
-            this.shipStore.getShipById$(this.shipId);
-        }
+    private loadShip(): void {
+        this.shipDetailStore.loadShip$(this.shipOptions$.value);
     }
 }

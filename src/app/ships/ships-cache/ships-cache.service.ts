@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, shareReplay } from "rxjs";
 import { ShipDto, ShipsResponseDto } from "../ships-data/ship.dto";
 import { ShipsDataService, ShipsListOptions } from "../ships-data/ships-data.service";
+import { ShipOptions } from './../ships-data/ships-data.service';
 
 const CACHE_SIZE = 1;
 const UNSUBSCRIBE_ZERO_CONSUMERS = true;
@@ -26,13 +27,11 @@ export class ShipsCacheService {
         return this.shipsCache$.get(shipsRequestOptions) as Observable<ShipsResponseDto>;
     }
 
-    public getShipByShipId$(id: string): Observable<ShipDto> {
-        const shipRequestId = id;
-
-        console.log(this.shipsCache$.get(shipRequestId));
+    public getShipByShipId$(options: ShipOptions): Observable<ShipDto> {
+        const shipRequestId = options.id;
 
         if (!this.shipsCache$.has(shipRequestId)) {
-            const response = this.shipsDataService.fetchShipByShipId$(shipRequestId).pipe(
+            const response = this.shipsDataService.fetchShipByShipId$(options).pipe(
                 shareReplay({ bufferSize: CACHE_SIZE, refCount: UNSUBSCRIBE_ZERO_CONSUMERS }),
             );
 
