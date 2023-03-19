@@ -1,6 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
 import * as ShipsFiltersActions from "./ships-filters.actions";
 
+export const SHIPS_ON_PAGE = 5;
+export const START_PAGE = 0;
+
 export interface ShipsFiltersState {
     filters: ShipsFilters;
     pagination: ShipsPagination;
@@ -8,24 +11,28 @@ export interface ShipsFiltersState {
 
 export interface ShipsFilters {
     shipName: string | null;
-    portNames: string[];
-    shipTypeName: string | null;
+    shipPortsItems: string[];
+    shipType: string | null;
 }
 
 export interface ShipsPagination {
     page: number;
+    limit: number | null;
     totalPages: number | null;
+    totalShips: number | null;
 }
 
 export const shipsFiltersInitialState: ShipsFiltersState = {
     filters: {
         shipName: null,
-        portNames: [],
-        shipTypeName: null,
+        shipPortsItems: [],
+        shipType: null,
     },
     pagination: {
-        page: 1,
+        page: START_PAGE,
+        limit: SHIPS_ON_PAGE,
         totalPages: null,
+        totalShips: null,
     },
 };
 

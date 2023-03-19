@@ -40,7 +40,7 @@ export class ShipsListService {
 
     constructor(private store$: Store) {}
 
-    public loadShips(): void {
+    public loadShips$(): void {
         this.store$.dispatch(ShipsViewActions.loadShips());
     }
 
@@ -51,5 +51,6 @@ export class ShipsListService {
 
     public filtersUpdate(filters: ShipsFilters): void {
         this.store$.dispatch(ShipsFiltersActions.setShipsFiltersState({ filters }));
+        this.store$.dispatch(ShipsViewActions.loadShips());
     }
 }

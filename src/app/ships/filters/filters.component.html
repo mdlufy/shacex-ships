@@ -2,16 +2,16 @@
     <span class="header-text">Фильтры</span>
 </div>
 
-<form [formGroup]="fitlersForm$" class="filters-form">
-    <div class="ship-filter">
-        <input type="text" formControlName="shipName">
+<form [formGroup]="filtersForm" class="filters-form">
+    <div class="ship-filter item">
+        <input type="text" [formControlName]="SHIP_NAME">
     </div>
 
-    <div class="port-filter">
+    <div class="port-filter item">
         <!-- <input type="text" formControlName="shiName"> -->
     </div>
 
-    <div class="type-filter">
+    <div class="type-filter item">
         <!-- <input type="text" formControlName="shipName"> -->
     </div>
 </form>

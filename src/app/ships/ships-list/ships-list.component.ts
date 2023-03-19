@@ -53,6 +53,6 @@ export class ShipsListComponent implements OnInit {
     }
 
     private loadShips(): void {
-        this.shipsListService.loadShips();
+        this.shipsListService.loadShips$();
     }
 }

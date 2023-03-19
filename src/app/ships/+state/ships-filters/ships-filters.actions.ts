@@ -36,3 +36,12 @@ export const setShipsPaginationTotalPages = createAction(
     "[Filters View] Set Ships Pagination Total Pages",
     props<{ totalPages: number }>()
 );
+
+export const getShipsPaginationTotalShips = createAction(
+    "[Filter View] Get Ships Pagination Total Ships"
+);
+
+export const setShipsPaginationTotalShips = createAction(
+    "[Filters View] Set Ships Pagination Total Ships",
+    props<{ totalShips: number }>()
+);

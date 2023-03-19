@@ -10,10 +10,22 @@ export const getShipsFilters = createSelector(
     (state: ShipsFiltersState) => state.filters
 );
 
+export const getShipsPaginationLimit = createSelector(
+    getShipsFiltersState,
+    (state: ShipsFiltersState) => state.pagination.limit
+);
+
 export const getShipsPaginationPage = createSelector(
     getShipsFiltersState,
     (state: ShipsFiltersState) => state.pagination.page
 );
+
+export const getShipsPaginationOptions = createSelector(
+    getShipsPaginationPage,
+    getShipsPaginationLimit,
+    (page: number | null, limit: number | null) => ({ page, limit })
+)
+
 
 export const getShipsPaginationTotalPages = createSelector(
     getShipsFiltersState,
