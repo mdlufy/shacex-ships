@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
-import { mapShipResponseDtoToShipResponseView } from "../../helpers/ship-mapping.helper";
+import { mapShipsResponseDtoToShipsResponseView } from "../../helpers/ship-mapping.helper";
 import { ShipsCacheService } from '../../ships-cache/ships-cache.service';
-import { ShipResponseDto, ShipResponseView } from "../../ships-data/ship.dto";
+import { ShipsResponseDto, ShipsResponseView } from "../../ships-data/ship.dto";
 import { ShipsListOptions } from "../../ships-data/ships-data.service";
 import { LoadingState } from '../loading-state';
 import * as ShipsFiltersActions from "../ships-filters/ships-filters.actions";
@@ -23,7 +23,7 @@ export class ShipsViewEffects {
             switchMap(([action, page]) =>
                 this.getShips$(page).pipe(
                     tap(() => this.store$.dispatch(ShipsViewActions.setShipsViewLoadingState({ loadingState: LoadingState.SUCCESS }))),
-                    map(({ ships }: ShipResponseView) => ShipsViewActions.loadShipsSuccess({ shipsView: ships })),
+                    map(({ ships }: ShipsResponseView) => ShipsViewActions.loadShipsSuccess({ shipsView: ships })),
                     catchError(() => of(ShipsViewActions.setShipsViewLoadingState({ loadingState: LoadingState.LOADING_ERROR }))),
                 ) 
             )
@@ -36,7 +36,7 @@ export class ShipsViewEffects {
         private shipsCacheService: ShipsCacheService,
     ) {}
 
-    private getShips$(page: number): Observable<ShipResponseView> {
+    private getShips$(page: number): Observable<ShipsResponseView> {
         const options: ShipsListOptions = {
             page,
             limit: SHIPS_ON_PAGE,
@@ -44,8 +44,8 @@ export class ShipsViewEffects {
 
         return this.shipsCacheService.getShips$(options)
             .pipe(
-                map((shipResponse: ShipResponseDto) => mapShipResponseDtoToShipResponseView(shipResponse)),
-                tap(({ page, totalPages }: ShipResponseView) => {
+                map((shipResponse: ShipsResponseDto) => mapShipsResponseDtoToShipsResponseView(shipResponse)),
+                tap(({ page, totalPages }: ShipsResponseView) => {
                     this.store$.dispatch(ShipsFiltersActions.setShipsPaginationState({ pagination: { page, totalPages } }))
                 })
             )

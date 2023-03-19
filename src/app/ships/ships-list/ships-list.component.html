@@ -46,5 +46,8 @@
 </div>
 
 <div class="filters">
-    <app-filters></app-filters>
+    <app-filters
+        [filters]="(shipsFilters$ | async)!"
+        (filtersUpdate)="onFiltersUpdate($event)"
+    ></app-filters>
 </div>

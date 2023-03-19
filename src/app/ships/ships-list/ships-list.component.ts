@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { LoadingState } from "../+state/loading-state";
+import { ShipsFilters } from "../+state/ships-filters/ships-filters.reducer";
 import { ShipView } from "../+state/ships-view/ships-view.reducer";
 import { ShipsListService } from "./ships-list.service";
 
@@ -17,6 +18,8 @@ export class ShipsListComponent implements OnInit {
     public page$: Observable<number>;
     public totalPages$: Observable<number | null>;
 
+    public shipsFilters$: Observable<ShipsFilters>;
+
     public loadingState$: Observable<LoadingState>;
 
     public readonly loadingState = LoadingState;
@@ -30,21 +33,26 @@ export class ShipsListComponent implements OnInit {
         this.loadingState$ = this.shipsListService.loadingState$;
         this.page$ = this.shipsListService.page$;
         this.totalPages$ = this.shipsListService.totalPages$;
+        this.shipsFilters$ = this.shipsListService.shipsFilters$;
     }
 
     ngOnInit(): void {
-        this.initShips();
-    }
-
-    public openShip(id: string): void {
-        this.router.navigate(["./", id], { relativeTo: this.route });
+        this.loadShips();
     }
 
     public changePage(page: number): void {
         this.shipsListService.changePage(page);
     }
 
-    private initShips(): void {
+    public openShip(id: string): void {
+        this.router.navigate(["./", id], { relativeTo: this.route });
+    }
+
+    public onFiltersUpdate(filters: ShipsFilters): void {
+        this.shipsListService.filtersUpdate(filters);
+    }
+
+    private loadShips(): void {
         this.shipsListService.loadShips();
     }
 }

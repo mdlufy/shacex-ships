@@ -1,3 +1,4 @@
+import { ShipsFilters } from './../+state/ships-filters/ships-filters.reducer';
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
@@ -10,6 +11,7 @@ import {
     getShipsViewLoadingState,
 } from "../+state/ships-view/ships-view.selectors";
 import {
+    getShipsFilters,
     getShipsPaginationPage,
     getShipsPaginationTotalPages,
 } from "../+state/ships-filters/ships-filters.selectors";
@@ -32,6 +34,10 @@ export class ShipsListService {
         return this.store$.select(getShipsPaginationTotalPages);
     }
 
+    public get shipsFilters$(): Observable<ShipsFilters> {
+        return this.store$.select(getShipsFilters);
+    }
+
     constructor(private store$: Store) {}
 
     public loadShips(): void {
@@ -41,5 +47,9 @@ export class ShipsListService {
     public changePage(page: number): void {
         this.store$.dispatch(ShipsFiltersActions.setShipsPaginationPage({ page }));
         this.store$.dispatch(ShipsViewActions.loadShips());
+    }
+
+    public filtersUpdate(filters: ShipsFilters): void {
+        this.store$.dispatch(ShipsFiltersActions.setShipsFiltersState({ filters }));
     }
 }

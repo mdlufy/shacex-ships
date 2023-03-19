@@ -6,7 +6,11 @@ export interface ShipsFiltersState {
     pagination: ShipsPagination;
 }
 
-export interface ShipsFilters {}
+export interface ShipsFilters {
+    shipName: string | null;
+    portNames: string[];
+    shipTypeName: string | null;
+}
 
 export interface ShipsPagination {
     page: number;
@@ -14,7 +18,11 @@ export interface ShipsPagination {
 }
 
 export const shipsFiltersInitialState: ShipsFiltersState = {
-    filters: {},
+    filters: {
+        shipName: null,
+        portNames: [],
+        shipTypeName: null,
+    },
     pagination: {
         page: 1,
         totalPages: null,
@@ -25,11 +33,11 @@ export const shipsFiltersReducer = createReducer(
     shipsFiltersInitialState,
     on(ShipsFiltersActions.setShipsPaginationState, (state, { pagination }) => ({
         ...state,
-        pagination
+        pagination,
     })),
     on(ShipsFiltersActions.setShipsFiltersState, (state, { filters }) => ({
         ...state,
-        filters
+        filters,
     })),
     on(ShipsFiltersActions.setShipsPaginationPage, (state, { page }) => ({
         ...state,

@@ -16,6 +16,7 @@ import { RolesListPipe } from "./ships-detail/roles-list.pipe";
 import { FiltersComponent } from "./filters/filters.component";
 import { ShipsListComponent } from "./ships-list/ships-list.component";
 import { ShipsCacheService } from "./ships-cache/ships-cache.service";
+import { ReactiveFormsModule } from "@angular/forms";
 
 const EFFECTS_LIST = [ShipsViewEffects];
 
@@ -29,6 +30,7 @@ const EFFECTS_LIST = [ShipsViewEffects];
     ],
     imports: [
         CommonModule,
+        ReactiveFormsModule,
         LibPaginationModule,
         StoreModule.forFeature(FEATURE_SHIPS_VIEW, shipsViewReducer),
         StoreModule.forFeature(FEATURE_SHIPS_FILTERS, shipsFiltersReducer),
