@@ -1,3 +1,4 @@
+import { ShipsCacheService } from './../ships-cache/ships-cache.service';
 import { Injectable } from "@angular/core";
 import { ComponentStore } from "@ngrx/component-store";
 import { catchError, map, Observable, of, switchMap, tap } from "rxjs";
@@ -21,14 +22,14 @@ export class ShipStore extends ComponentStore<ShipState> {
         (state) => state.loadingState
     );
 
-    constructor(private readonly shipsDataService: ShipsDataService) {
+    constructor(private shipsCacheService: ShipsCacheService) {
         super();
     }
 
     public getShipById$ = this.effect((shipId$: Observable<string>) => {
         return shipId$.pipe(
             switchMap((shipId: string) =>
-                this.shipsDataService.fetchShipByShipId$(shipId).pipe(
+                this.shipsCacheService.getShipByShipId$(shipId).pipe(
                     map((ship: ShipDto) => mapShipDtoToShipView(ship)),
                     tap((ship: ShipView) => {
                         this.setState({
