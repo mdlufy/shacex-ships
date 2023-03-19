@@ -10,7 +10,7 @@ export interface ShipDto {
     roles: string[];
 }
 
-export interface ShipResponseDto {
+export interface ShipsResponseDto {
     docs: ShipDto[];
     totalDocs: number;
     limit: number;
@@ -18,7 +18,7 @@ export interface ShipResponseDto {
     page: number;
 }
 
-export interface ShipResponseView extends ShipResponseDto {
+export interface ShipsResponseView extends ShipsResponseDto {
     ships: ShipView[];
     limit: number;
     page: number;
