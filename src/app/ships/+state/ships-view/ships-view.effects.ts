@@ -23,7 +23,11 @@ export class ShipsViewEffects {
             concatLatestFrom((action) => [this.store$.select(getShipsPaginationOptions), this.store$.select(getShipsFilters)]),
             switchMap(([action, paginationOptions, filters]) =>
                 this.getShips$(paginationOptions, filters).pipe(
-                    tap(() => this.store$.dispatch(ShipsViewActions.setShipsViewLoadingState({ loadingState: LoadingState.SUCCESS }))),
+                    tap((shipsView: ShipView[]) => 
+                        this.store$.dispatch(ShipsViewActions.setShipsViewLoadingState({ 
+                            loadingState: shipsView?.length ? LoadingState.SUCCESS : LoadingState.NOT_FOUND
+                        }))
+                    ),
                     map((shipsView: ShipView[]) => ShipsViewActions.loadShipsSuccess({ shipsView })),
                     catchError(() => of(ShipsViewActions.setShipsViewLoadingState({ loadingState: LoadingState.LOADING_ERROR }))),
                 ) 
