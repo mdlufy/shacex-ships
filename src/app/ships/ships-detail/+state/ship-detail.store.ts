@@ -52,17 +52,14 @@ export class ShipDetailStore extends ComponentStore<ShipState> {
                         (ship: ShipView) => this.setShip(ship),
                         () => this.handleErrorResponse()
                     ),
-                    tap((ship: ShipView) => this.setState({ loadingState: LoadingState.SUCCESS, ship })),
-                    catchError((error: HttpErrorResponse) => this.handleErrorResponse())
-                )
-            )
+                ),
+            ),
         );
     });
-
 
     private handleErrorResponse(): Observable<ShipView | null> {
         this.patchState({ loadingState: LoadingState.LOADING_ERROR });
 
-        return of(null);      
+        return of(null);
     }
 }
