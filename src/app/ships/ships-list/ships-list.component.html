@@ -1,4 +1,4 @@
-<div class="ships">
+<div class="content">
     <div class="header">
         <span class="header-value">SpaceX Ships</span>
     </div>
@@ -45,9 +45,9 @@
     </ng-container>
 </div>
 
-<div class="filters">
-    <app-filters
-        [filters]="(shipsFilters$ | async)!"
-        (filtersUpdate)="onFiltersUpdate($event)"
-    ></app-filters>
-</div>
+<app-filters
+    *ngIf="shipsFilters$ | async as shipsFilters"
+    [filters]="shipsFilters"
+    (filtersUpdate)="onFiltersUpdate($event)"
+    class="filters"
+></app-filters>
