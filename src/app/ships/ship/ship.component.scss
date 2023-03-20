@@ -1,11 +1,11 @@
 .ship {
-    display: flex;
-    flex-direction: column;
-
     margin-bottom: 12px;
     margin-left: -20px;
 
     padding: 16px 20px;
+
+    display: flex;
+    flex-direction: column;
 
     border-radius: 5px;
 
@@ -26,36 +26,43 @@
     margin-bottom: 26px;
 
     &-value {
-        font-size: 18px;
-        font-weight: 700;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
 
-        margin-right: 1rem;
+        margin-right: 23px;
     }
 }
 
 .properties {
     display: flex;
-    flex-direction: row;
+
+    max-width: 700px;
+
+    gap: 20px;
 }
 
 .item {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+
+    flex: 1 1 calc(100% / 2);
+
     &-header {
-        margin-right: 5rem;
+        margin-right: 6.5rem;
     }
 
     &-value {
-        color: #185cce;
+        color: #2962ff;
     }
-}
-
-.item:not(:last-child) {
-    margin-right: 13rem;
 }
 
 .divider {
     margin-top: 10px;
+
     border: 0;
     height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+    border-top: 1px solid #A5A5A5;
 }

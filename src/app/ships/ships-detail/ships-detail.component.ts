@@ -23,6 +23,8 @@ export class ShipsDetailComponent implements OnInit {
 
     public shipId: string | null;
 
+    public defaultValue = "—";
+
     constructor(
         private shipDetailStore: ShipDetailStore,
         private readonly route: ActivatedRoute,

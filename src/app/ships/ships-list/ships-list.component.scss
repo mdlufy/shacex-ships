@@ -4,32 +4,33 @@
 }
 
 .content {
-    padding: 3rem;
-    background-color: #faf9f6;
+    padding: 52px 64px;
 
     display: flex;
     flex-direction: column;
-
     flex-grow: 1;
+
+    background-color: #fafafa;
 
     border-right: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .header {
-    margin-bottom: 40px;
+    margin-bottom: 64px;
+}
 
-    &-value {
-        font-size: 24px;
-        font-weight: 700;
-    }
+.text {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 32px;
 }
 
 .filters {
-    padding: 3rem 1.5rem;
+    padding: 52px 32px;
     min-width: 250px;
 
     display: flex;
     flex-direction: column;
 
-    background-color: white;
+    background-color: #ffffff;
 }

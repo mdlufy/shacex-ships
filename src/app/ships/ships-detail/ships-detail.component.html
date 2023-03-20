@@ -1,5 +1,6 @@
 <div class="ship-detail">
     <div class="ship-header" (click)="onClick()">
+        <img src="assets/returnIcon.svg" class="icon">
         <span class="text">Вернуться</span>
     </div>
 
@@ -23,36 +24,34 @@
 </div>
 
 <ng-template #shipBase let-ship>
-    <div class="info">
         <span class="name">{{ ship.name }}</span>
 
         <div class="properties">
             <div class="item">
                 <span class="item-header">Тип</span>
-                <span class="item-value">{{ ship.type }}</span>
+                <span class="item-value">{{ ship.type ?? defaultValue }}</span>
             </div>
 
             <div class="item">
                 <span class="item-header">Порт</span>
-                <span class="item-value">{{ ship.homePort }}</span>
+                <span class="item-value">{{ ship.homePort ?? defaultValue }}</span>
             </div>
 
             <div class="item">
                 <span class="item-header">Вес</span>
-                <span class="item-value">{{ ship.weight }}</span>
+                <span class="item-value">{{ ship.weight ?? defaultValue }}</span>
             </div>
 
             <div class="item">
                 <span class="item-header">Год</span>
-                <span class="item-value">{{ ship.yearBuild }}</span>
+                <span class="item-value">{{ ship.yearBuild ?? defaultValue }}</span>
             </div>
 
             <div class="item">
-                <span class="item-header">Роли</span>
-                <span class="item-value">{{ ship.roles | rolesList }}</span>
+                <span class="item-header">Миссии</span>
+                <span class="item-value">{{ (ship.roles | rolesList) ?? defaultValue }}</span>
             </div>
         </div>
-    </div>
 </ng-template>
 
 <ng-template #loading>

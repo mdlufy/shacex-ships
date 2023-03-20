@@ -3,14 +3,18 @@
 }
 
 .ship-header {
-    margin-bottom: 18px;
+    margin-bottom: 22px;
 
     cursor: pointer;
 }
 
+.icon {
+    margin-right: 7px;
+}
+
 .text {
     font-size: 16px;
-    color: #185cce;
+    color: #2962ff;
 }
 
 .name {
@@ -20,35 +24,30 @@
     font-weight: 700;
 }
 
-.info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .properties {
+    margin-top: 53px;
+
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 40px 10px;
 }
 
 .item {
     display: flex;
-    flex-direction: row;
+    align-content: space-between;
+
+    flex: 1 1 calc((100% / 2) - 80px);
 
     &-header {
         margin-right: 5rem;
     }
 
     &-value {
-        color: #185cce;
+        color: #2962ff;
     }
 }
 
-.item:not(:last-child) {
-    margin-bottom: 5px;
-}
-
 .value {
-    color: #185cce;
+    color: #2962ff;
 }

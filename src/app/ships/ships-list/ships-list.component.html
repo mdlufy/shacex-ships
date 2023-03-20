@@ -1,6 +1,6 @@
 <div class="content">
     <div class="header">
-        <span class="header-value">SpaceX Ships</span>
+        <span class="text">SpaceX Ships</span>
     </div>
 
     <ng-container [ngSwitch]="loadingState$ | async">
@@ -16,11 +16,11 @@
                 ></app-ship>
             </ng-container>
 
-            <!-- <lib-pagination
+            <lib-pagination
                 [page]="(page$ | async)!"
                 [total]="(totalPages$ | async)!"
                 (changePage)="changePage($event)"
-            ></lib-pagination> -->
+            ></lib-pagination>
         </ng-container>
 
         <ng-container *ngSwitchCase="loadingState.LOADING_ERROR">

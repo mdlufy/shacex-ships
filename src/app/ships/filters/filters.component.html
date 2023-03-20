@@ -2,16 +2,19 @@
     <span class="header-text">Фильтры</span>
 </div>
 
-<form [formGroup]="filtersForm" class="filters-form">
-    <div class="ship-filter item">
-        <input type="text" [formControlName]="SHIP_NAME">
-    </div>
+<form [formGroup]="filtersForm">
+    <div class="filters">
+        <div class="filters-name">
+            <input type="text" [formControlName]="SHIP_NAME" />
+        </div>
 
-    <div class="port-filter item">
-        <!-- <input type="text" formControlName="shiName"> -->
-    </div>
+        <div class="filters-port">
+            <input type="text" />
+        </div>
 
-    <div class="type-filter item">
-        <!-- <input type="text" formControlName="shipName"> -->
+        <div class="filters-type">
+            <!-- <input type="radio" id="dewey" name="drone" value="dewey"  class="radio-btn"/>
+            <label for="dewey" class="radio-label">Dewey</label> -->
+        </div>
     </div>
 </form>

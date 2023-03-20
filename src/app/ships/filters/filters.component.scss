@@ -1,4 +1,6 @@
 .header {
+    margin-bottom: 35px;
+
     &-text {
         font-size: 18px;
         font-weight: 600;
@@ -10,6 +12,13 @@
     flex-direction: column;
 }
 
-.item {
-    margin-top: 24px;
+.filters {
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+.radio-btn {
+    margin-right: 28px;
 }
