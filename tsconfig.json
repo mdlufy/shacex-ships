@@ -19,7 +19,18 @@
         "importHelpers": true,
         "target": "es2020",
         "module": "es2020",
-        "lib": ["es2020", "dom"]
+        "lib": [
+          "es2020",
+          "dom"
+        ],
+        "paths": {
+          "@lib-ui/cdk": [
+            "dist/lib-ui/cdk"
+          ],
+          "@lib-ui/core": [
+            "dist/lib-ui/core"
+          ],
+        }
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
