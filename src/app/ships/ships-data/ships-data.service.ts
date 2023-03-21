@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { initialApiUrl } from "src/app/config_api";
-import { ShipDto, ShipsResponseDto } from "./ship.dto";
+import { ShipDto } from "./ship.dto";
 
 export interface ShipsListOptions {
     page: number | null;

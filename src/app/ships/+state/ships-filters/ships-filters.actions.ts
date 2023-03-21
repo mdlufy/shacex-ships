@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { ShipsFilters, ShipsPagination } from "./ships-filters.reducer";
+import { ShipsFilters, ShipsFiltersFields, ShipsPagination } from "./ships-filters.reducer";
 
 export const getShipsFiltersState = createAction(
     "[Filters View] Get Ships Filters State"
@@ -45,3 +45,8 @@ export const setShipsPaginationTotalShips = createAction(
     "[Filters View] Set Ships Pagination Total Ships",
     props<{ totalShips: number }>()
 );
+
+export const setShipsFiltersFields = createAction(
+    "[Filters View] Set Ships Filters Items",
+    props<{ filtersFields: ShipsFiltersFields }>(),
+)

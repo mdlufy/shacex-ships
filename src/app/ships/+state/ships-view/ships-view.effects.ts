@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, tap, withLatestFrom } from 'rxjs';
 import * as FiltersHelpers from '../../helpers/filters.helper';
-import { mapShipDtoToShipView, mapShipsResponseDtoToShipsResponseView } from "../../helpers/ship-mapping.helper";
+import { mapShipDtoToShipView } from "../../helpers/ship-mapping.helper";
 import { ShipsCacheService } from '../../ships-cache/ships-cache.service';
-import { ShipDto, ShipsResponseDto, ShipsResponseView } from "../../ships-data/ship.dto";
+import { ShipDto } from "../../ships-data/ship.dto";
 import { ShipsListOptions } from "../../ships-data/ships-data.service";
 import { LoadingState } from '../loading-state';
 import * as ShipsFiltersActions from "../ships-filters/ships-filters.actions";
-import { ShipsFilters, SHIPS_ON_PAGE } from "../ships-filters/ships-filters.reducer";
+import { ShipsFilters, ShipsFiltersFields, SHIPS_ON_PAGE } from "../ships-filters/ships-filters.reducer";
 import { getShipsFilters, getShipsPaginationOptions } from "../ships-filters/ships-filters.selectors";
 import * as ShipsViewActions from "./ships-view.actions";
 import { ShipView } from "./ships-view.reducer";
@@ -44,23 +44,26 @@ export class ShipsViewEffects {
     private getShips$(options: ShipsListOptions, filters: ShipsFilters): Observable<ShipView[]> {
         return this.shipsCacheService.getShips$({} as ShipsListOptions)
             .pipe(
-                map((shipsDto: ShipDto[]) => {
-                    const shipsView = shipsDto.map(shipDto => mapShipDtoToShipView(shipDto));
-
-                    const filteredShipView = FiltersHelpers.filterShipsView(shipsView, filters);
-
-                    return filteredShipView;
-                }),
-                tap((shipsView: ShipView[]) => this.setShipsPaginationOptions(shipsView)),
+                map((shipsDto: ShipDto[]) => shipsDto.map(shipDto => mapShipDtoToShipView(shipDto))),
+                tap((shipsView: ShipView[]) => this.setShipsFiltersFields(shipsView)),
+                map((shipsView: ShipView[]) => FiltersHelpers.getFilteredShipsView(shipsView, filters)),
+                tap((shipsView: ShipView[]) => this.setShipsPagination(shipsView)),
             )
     }
 
-    private setShipsPaginationOptions(shipsView: ShipView[]): void {
+    private setShipsPagination(shipsView: ShipView[]): void {
         const totalShips = shipsView.length;
-
         const totalPages = Math.ceil(totalShips / SHIPS_ON_PAGE);
+
+        console.log(totalShips);
 
         this.store$.dispatch(ShipsFiltersActions.setShipsPaginationTotalPages({ totalPages }));
         this.store$.dispatch(ShipsFiltersActions.setShipsPaginationTotalShips({ totalShips }));
+    }
+
+    private setShipsFiltersFields(shipsView: ShipView[]): void {
+        const filtersFields: ShipsFiltersFields = FiltersHelpers.getShipsFiltersFields(shipsView);
+
+        this.store$.dispatch(ShipsFiltersActions.setShipsFiltersFields({ filtersFields }));
     }
 }

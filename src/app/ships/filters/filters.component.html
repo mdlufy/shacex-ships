@@ -9,12 +9,27 @@
         </div>
 
         <div class="filters-port">
-            <input type="text" />
+            <div *ngFor="let port of shipsPorts">
+                <input
+                    type="checkbox"
+                    [checked]="isCheckboxChecked(port)"
+                    (change)="onCheckboxChange(port)"
+                />
+                <input type="text" value="{{ port }}" />
+            </div>
         </div>
 
         <div class="filters-type">
-            <!-- <input type="radio" id="dewey" name="drone" value="dewey"  class="radio-btn"/>
-            <label for="dewey" class="radio-label">Dewey</label> -->
+            <div *ngFor="let type of shipsTypes">
+                <input
+                    type="radio"
+                    [checked]="isRadioChecked(type)"
+                    (change)="onRadioChange(type)"
+                />
+                <input type="text" value="{{ type }}" />
+            </div>
         </div>
+
+        <button type="button" (click)="resetFilters()">Сбросить фильтры</button>
     </div>
 </form>

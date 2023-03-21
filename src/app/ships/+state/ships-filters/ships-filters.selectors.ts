@@ -21,13 +21,16 @@ export const getShipsPaginationPage = createSelector(
 );
 
 export const getShipsPaginationOptions = createSelector(
-    getShipsPaginationPage,
-    getShipsPaginationLimit,
-    (page: number | null, limit: number | null) => ({ page, limit })
-)
-
+    getShipsFiltersState,
+    (state: ShipsFiltersState) => state.pagination
+);
 
 export const getShipsPaginationTotalPages = createSelector(
     getShipsFiltersState,
     (state: ShipsFiltersState) => state.pagination.totalPages
+);
+
+export const getShipsFiltersFields = createSelector(
+    getShipsFiltersState,
+    (state: ShipsFiltersState) => state.filtersFields
 );

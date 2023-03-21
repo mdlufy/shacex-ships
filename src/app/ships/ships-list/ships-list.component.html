@@ -9,18 +9,23 @@
         </ng-container>
 
         <ng-container *ngSwitchCase="loadingState.SUCCESS">
-            <ng-container *ngFor="let shipView of shipsView$ | async">
-                <app-ship
-                    [shipView]="shipView"
-                    (openShip)="openShip($event)"
-                ></app-ship>
-            </ng-container>
+            <ng-container *ngIf="shipsView$ | async as shipsView">
+                <ng-container *ngIf="paginationOptions$ | async as paginationOptions">
+                    <ng-container *ngFor="let shipView of (shipsView | paginator: paginationOptions.page : paginationOptions.limit)">
+                        <app-ship
+                            [shipView]="shipView"
+                            (openShip)="openShip($event)"
+                        ></app-ship>
+                    </ng-container>
 
-            <lib-pagination
-                [page]="(page$ | async)!"
-                [total]="(totalPages$ | async)!"
-                (changePage)="changePage($event)"
-            ></lib-pagination>
+                    <lib-pagination
+                        [page]="paginationOptions.page"
+                        [total]="paginationOptions.totalPages"
+                        (changePage)="changePage($event)"
+                        class="pagination"
+                    ></lib-pagination>
+                </ng-container>
+            </ng-container>
         </ng-container>
 
         <ng-container *ngSwitchCase="loadingState.LOADING_ERROR">
@@ -48,6 +53,8 @@
 <app-filters
     *ngIf="shipsFilters$ | async as shipsFilters"
     [filters]="shipsFilters"
+    [shipsTypes]="(shipsTypes$ | async)!"
+    [shipsPorts]="(shipsPorts$ | async)!"
     (filtersUpdate)="onFiltersUpdate($event)"
     class="filters"
 ></app-filters>
