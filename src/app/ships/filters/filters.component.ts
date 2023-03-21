@@ -10,12 +10,12 @@ import {
     SimpleChanges,
 } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { DestroyService } from "@lib-ui/cdk";
+import { DestroyService } from "mdlufy-ui";
 import { distinctUntilChanged, Observable, takeUntil, tap } from "rxjs";
 import { ShipsFilters } from "../+state/ships-filters/ships-filters.reducer";
 import { FilterShipType } from "./filter-types";
 
-// TODO: оформить фильтры как библиотечные решения в @lib-ui/core
+// TODO: оформить фильтры как библиотечные решения в mdlufy-ui
 
 @Component({
     selector: "app-filters",

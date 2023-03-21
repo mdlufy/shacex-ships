@@ -93,23 +93,23 @@
                 }
             }
         },
-        "@lib-ui/core": {
+        "mdlufy-ui": {
           "projectType": "library",
-          "root": "libs/lib-ui/core",
-          "sourceRoot": "libs/lib-ui/core",
+          "root": "libs/mdlufy-ui",
+          "sourceRoot": "libs/mdlufy-ui",
           "prefix": "lib",
           "architect": {
             "build": {
               "builder": "@angular-devkit/build-angular:ng-packagr",
               "options": {
-                "project": "libs/lib-ui/core/ng-package.json"
+                "project": "libs/mdlufy-ui/ng-package.json"
               },
               "configurations": {
                 "production": {
-                  "tsConfig": "libs/lib-ui/core/tsconfig.lib.prod.json"
+                  "tsConfig": "libs/mdlufy-ui/tsconfig.lib.prod.json"
                 },
                 "development": {
-                  "tsConfig": "libs/lib-ui/core/tsconfig.lib.json"
+                  "tsConfig": "libs/mdlufy-ui/tsconfig.lib.json"
                 }
               },
               "defaultConfiguration": "production"
@@ -117,40 +117,9 @@
             "test": {
               "builder": "@angular-devkit/build-angular:karma",
               "options": {
-                "main": "libs/lib-ui/core/src/test.ts",
-                "tsConfig": "libs/lib-ui/core/tsconfig.spec.json",
-                "karmaConfig": "libs/lib-ui/core/karma.conf.js"
-              }
-            }
-          }
-        },
-        "@lib-ui/cdk": {
-          "projectType": "library",
-          "root": "libs/lib-ui/cdk",
-          "sourceRoot": "libs/lib-ui/cdk",
-          "prefix": "lib",
-          "architect": {
-            "build": {
-              "builder": "@angular-devkit/build-angular:ng-packagr",
-              "options": {
-                "project": "libs/lib-ui/cdk/ng-package.json"
-              },
-              "configurations": {
-                "production": {
-                  "tsConfig": "libs/lib-ui/cdk/tsconfig.lib.prod.json"
-                },
-                "development": {
-                  "tsConfig": "libs/lib-ui/cdk/tsconfig.lib.json"
-                }
-              },
-              "defaultConfiguration": "production"
-            },
-            "test": {
-              "builder": "@angular-devkit/build-angular:karma",
-              "options": {
-                "main": "libs/lib-ui/cdk/src/test.ts",
-                "tsConfig": "libs/lib-ui/cdk/tsconfig.spec.json",
-                "karmaConfig": "libs/lib-ui/cdk/karma.conf.js"
+                "main": "libs/mdlufy-ui/src/test.ts",
+                "tsConfig": "libs/mdlufy-ui/tsconfig.spec.json",
+                "karmaConfig": "libs/mdlufy-ui/karma.conf.js"
               }
             }
           }

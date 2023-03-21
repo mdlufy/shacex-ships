@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, '../../../coverage/lib-ui/cdk'),
+      dir: require('path').join(__dirname, '../../../coverage/mdlufy-ui'),
       subdir: '.',
       reporters: [
         { type: 'html' },

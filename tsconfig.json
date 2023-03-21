@@ -24,12 +24,9 @@
           "dom"
         ],
         "paths": {
-          "@lib-ui/cdk": [
-            "dist/lib-ui/cdk"
-          ],
-          "@lib-ui/core": [
-            "dist/lib-ui/core"
-          ],
+          "mdlufy-ui": [
+            "dist/mdlufy-ui"
+          ]
         }
     },
     "angularCompilerOptions": {

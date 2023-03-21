@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { PaginationModule } from "@lib-ui/core";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
+import { PaginationModule } from "mdlufy-ui";
 import { shipsFiltersReducer } from "./+state/ships-filters/ships-filters.reducer";
 import { FEATURE_SHIPS_FILTERS } from "./+state/ships-filters/ships-filters.selectors";
 import { ShipsViewEffects } from "./+state/ships-view/ships-view.effects";
