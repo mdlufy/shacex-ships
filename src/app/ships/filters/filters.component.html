@@ -2,34 +2,50 @@
     <span class="header-text">Фильтры</span>
 </div>
 
-<form [formGroup]="filtersForm">
+<form [formGroup]="filtersForm" autocomplete="off">
     <div class="filters">
         <div class="filters-name">
-            <input type="text" [formControlName]="SHIP_NAME" />
+            <input
+                type="text"
+                id="name"
+                [formControlName]="SHIP_NAME"
+                class="input"
+                placeholder="Название"
+            />
         </div>
 
         <div class="filters-port">
-            <div *ngFor="let port of shipsPorts">
-                <input
-                    type="checkbox"
-                    [checked]="isCheckboxChecked(port)"
-                    (change)="onCheckboxChange(port)"
-                />
-                <input type="text" value="{{ port }}" />
+            <input type="text" class="input" placeholder="Порт" />
+
+            <div class="checkbox-list">
+                <div *ngFor="let port of shipsPorts">
+                    <input
+                        type="checkbox"
+                        [checked]="isCheckboxChecked(port)"
+                        (change)="onCheckboxChange(port)"
+                        class="checkbox-btn"
+                    />
+                    <label type="text" class="value">{{ port }}</label>
+                </div>
             </div>
         </div>
 
         <div class="filters-type">
+            <span class="header">Тип</span>
+
             <div *ngFor="let type of shipsTypes">
                 <input
                     type="radio"
                     [checked]="isRadioChecked(type)"
                     (change)="onRadioChange(type)"
+                    class="radio-btn"
                 />
-                <input type="text" value="{{ type }}" />
+                <label type="text" class="value">{{ type }}</label>
             </div>
         </div>
 
-        <button type="button" (click)="resetFilters()">Сбросить фильтры</button>
+        <button type="button" class="reset-btn" (click)="resetFilters()">
+            Сбросить фильтры
+        </button>
     </div>
 </form>

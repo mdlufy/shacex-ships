@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, Observable, of, switchMap, tap, withLatestFrom } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import * as FiltersHelpers from '../../helpers/filters.helper';
 import { mapShipDtoToShipView } from "../../helpers/ship-mapping.helper";
 import { ShipsCacheService } from '../../ships-cache/ships-cache.service';
@@ -41,6 +41,7 @@ export class ShipsViewEffects {
         private shipsCacheService: ShipsCacheService,
     ) {}
 
+    // TODO: написать pipe более аккуратно
     private getShips$(options: ShipsListOptions, filters: ShipsFilters): Observable<ShipView[]> {
         return this.shipsCacheService.getShips$({} as ShipsListOptions)
             .pipe(
@@ -54,8 +55,6 @@ export class ShipsViewEffects {
     private setShipsPagination(shipsView: ShipView[]): void {
         const totalShips = shipsView.length;
         const totalPages = Math.ceil(totalShips / SHIPS_ON_PAGE);
-
-        console.log(totalShips);
 
         this.store$.dispatch(ShipsFiltersActions.setShipsPaginationTotalPages({ totalPages }));
         this.store$.dispatch(ShipsFiltersActions.setShipsPaginationTotalShips({ totalShips }));
