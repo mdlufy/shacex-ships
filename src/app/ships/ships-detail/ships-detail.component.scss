@@ -31,15 +31,21 @@
     flex-wrap: wrap;
 
     gap: 40px 10px;
+
 }
 
 .item {
     display: flex;
     align-content: space-between;
 
+    box-sizing: border-box;
+
+    padding-right: 10rem;
+
     flex: 1 1 calc((100% / 2) - 80px);
 
     &-header {
+        max-width: 20px;
         margin-right: 5rem;
     }
 

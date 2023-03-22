@@ -5,7 +5,7 @@
     </div>
 
     <ng-container [ngSwitch]="loadingState$ | async">
-        <ng-container *ngIf="(ship$ | async)! as ship">
+        <ng-container *ngIf="ship$ | async as ship">
             <ng-container *ngSwitchCase="loadingState.LOADING">
                 <ng-container *ngTemplateOutlet="loading"></ng-container>
             </ng-container>
