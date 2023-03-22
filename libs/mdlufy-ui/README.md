@@ -16,20 +16,3 @@ npm i mdlufy-ui
 ## Docs
 
 Coming soon...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
