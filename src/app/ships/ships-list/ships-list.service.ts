@@ -6,9 +6,7 @@ import * as ShipsFiltersActions from "../+state/ships-filters/ships-filters.acti
 import {
     getShipsFilters,
     getShipsFiltersFields,
-    getShipsPaginationOptions,
-    getShipsPaginationPage,
-    getShipsPaginationTotalPages
+    getShipsPaginationOptions
 } from "../+state/ships-filters/ships-filters.selectors";
 import * as ShipsViewActions from "../+state/ships-view/ships-view.actions";
 import { ShipView } from "../+state/ships-view/ships-view.reducer";

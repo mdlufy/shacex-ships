@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { LoadingState } from "../+state/loading-state";
-import { ShipsFilters, ShipsPagination, SHIPS_ON_PAGE } from "../+state/ships-filters/ships-filters.reducer";
+import { ShipsFilters, ShipsPagination } from "../+state/ships-filters/ships-filters.reducer";
 import { ShipView } from "../+state/ships-view/ships-view.reducer";
 import { ShipsListService } from "./ships-list.service";
 

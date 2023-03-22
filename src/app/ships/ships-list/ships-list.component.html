@@ -11,7 +11,7 @@
         <ng-container *ngSwitchCase="loadingState.SUCCESS">
             <ng-container *ngIf="shipsView$ | async as shipsView">
                 <ng-container *ngIf="paginationOptions$ | async as paginationOptions">
-                    <ng-container *ngFor="let shipView of (shipsView | paginator: paginationOptions.page : paginationOptions.limit)">
+                    <ng-container *ngFor="let shipView of shipsView | paginator: paginationOptions.page: paginationOptions.limit">
                         <app-ship
                             [shipView]="shipView"
                             (openShip)="openShip($event)"
@@ -36,17 +36,6 @@
             <ng-container *ngTemplateOutlet="empty"></ng-container>
         </ng-container>
 
-        <ng-template #loading>
-            <h1>Loading</h1>
-        </ng-template>
-
-        <ng-template #error>
-            <h1>Error</h1>
-        </ng-template>
-
-        <ng-template #empty>
-            <h1>Empty</h1>
-        </ng-template>
     </ng-container>
 </div>
 
@@ -58,3 +47,15 @@
     (filtersUpdate)="onFiltersUpdate($event)"
     class="filters"
 ></app-filters>
+
+<ng-template #loading>
+    <h1>Loading</h1>
+</ng-template>
+
+<ng-template #error>
+    <h1>Error</h1>
+</ng-template>
+
+<ng-template #empty>
+    <h1>Empty</h1>
+</ng-template>
