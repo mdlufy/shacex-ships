@@ -25,7 +25,6 @@ export interface ShipsPagination {
     page: number;
     limit: number;
     totalPages: number;
-    totalShips: number;
 }
 
 export const shipsFiltersInitialState: ShipsFiltersState = {
@@ -42,7 +41,6 @@ export const shipsFiltersInitialState: ShipsFiltersState = {
         page: START_PAGE,
         limit: SHIPS_ON_PAGE,
         totalPages: 0,
-        totalShips: 0,
     },
 };
 

@@ -57,6 +57,6 @@ export function getShipsFiltersFields(shipsView: ShipView[]): ShipsFiltersFields
     }
 }
 
-export function getUniqueAndNotNullItems(items: Array<string | null>): Array<string> {
-    return items.filter((item, index, array) => item && array.indexOf(item) === index) as Array<string>;
+export function getUniqueAndNotNullItems<T>(items: Array<T | null>): Array<T> {
+    return items.filter((item, index, array) => item && array.indexOf(item) === index) as Array<T>;
 }

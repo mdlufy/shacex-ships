@@ -24,29 +24,12 @@ export const setShipsPaginationPage = createAction(
     props<{ page: number }>()
 );
 
-export const getShipsPaginationPage = createAction(
-    "[Filters View] Get Ships Pagination Page"
-);
-
-export const getShipsPaginationTotalPages = createAction(
-    "[Filter View] Get Ships Pagination Total Pages"
-);
-
 export const setShipsPaginationTotalPages = createAction(
     "[Filters View] Set Ships Pagination Total Pages",
     props<{ totalPages: number }>()
 );
 
-export const getShipsPaginationTotalShips = createAction(
-    "[Filter View] Get Ships Pagination Total Ships"
-);
-
-export const setShipsPaginationTotalShips = createAction(
-    "[Filters View] Set Ships Pagination Total Ships",
-    props<{ totalShips: number }>()
-);
-
 export const setShipsFiltersFields = createAction(
     "[Filters View] Set Ships Filters Items",
     props<{ filtersFields: ShipsFiltersFields }>(),
-)
+);

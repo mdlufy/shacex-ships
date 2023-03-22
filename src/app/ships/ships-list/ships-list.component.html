@@ -44,7 +44,7 @@
     [filters]="shipsFilters"
     [shipsTypes]="(shipsTypes$ | async)!"
     [shipsPorts]="(shipsPorts$ | async)!"
-    (filtersUpdate)="onFiltersUpdate($event)"
+    (updateFilters)="onupdateFilters($event)"
     class="filters"
 ></app-filters>
 

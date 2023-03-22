@@ -57,7 +57,7 @@ export class ShipsListService {
         this.store$.dispatch(ShipsViewActions.loadShips());
     }
 
-    public filtersUpdate(filters: ShipsFilters): void {
+    public updateFilters(filters: ShipsFilters): void {
         this.store$.dispatch(ShipsFiltersActions.setShipsFiltersState({ filters }));
         this.store$.dispatch(ShipsFiltersActions.setShipsPaginationPage({ page: 1 }));
         this.store$.dispatch(ShipsViewActions.loadShips());

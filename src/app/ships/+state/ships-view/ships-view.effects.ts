@@ -41,7 +41,7 @@ export class ShipsViewEffects {
         private shipsCacheService: ShipsCacheService,
     ) {}
 
-    // TODO: написать pipe более аккуратно
+    // TODO: переписать pipe более аккуратно
     private getShips$(options: ShipsListOptions, filters: ShipsFilters): Observable<ShipView[]> {
         return this.shipsCacheService.getShips$({} as ShipsListOptions)
             .pipe(
@@ -53,11 +53,9 @@ export class ShipsViewEffects {
     }
 
     private setShipsPagination(shipsView: ShipView[]): void {
-        const totalShips = shipsView.length;
-        const totalPages = Math.ceil(totalShips / SHIPS_ON_PAGE);
+        const totalPages = Math.ceil(shipsView.length / SHIPS_ON_PAGE);
 
         this.store$.dispatch(ShipsFiltersActions.setShipsPaginationTotalPages({ totalPages }));
-        this.store$.dispatch(ShipsFiltersActions.setShipsPaginationTotalShips({ totalShips }));
     }
 
     private setShipsFiltersFields(shipsView: ShipView[]): void {

@@ -15,7 +15,8 @@ import { distinctUntilChanged, Observable, takeUntil, tap } from "rxjs";
 import { ShipsFilters } from "../+state/ships-filters/ships-filters.reducer";
 import { FilterShipType } from "./filter-types";
 
-// TODO: оформить фильтры как библиотечные решения в mdlufy-ui
+// TODO: оформить фильтры как библиотечные решения в mdlufy-ui: 
+// вынести в отдельные компоненты, реализующие ControlValueAccessor
 
 @Component({
     selector: "app-filters",
@@ -30,7 +31,7 @@ export class FiltersComponent implements OnInit, OnChanges {
     @Input() shipsPorts: string[];
     @Input() shipsTypes: string[];
 
-    @Output() filtersUpdate = new EventEmitter<ShipsFilters>();
+    @Output() updateFilters = new EventEmitter<ShipsFilters>();
 
     public get currentShipType(): string | null {
         return this._currentShipType;
@@ -116,7 +117,7 @@ export class FiltersComponent implements OnInit, OnChanges {
     private initFiltersSubscription() {
         this.filtersForm.valueChanges.pipe(
             distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
-            tap(() => this.filtersUpdate.emit(this.filtersForm.getRawValue())),
+            tap(() => this.updateFilters.emit(this.filtersForm.getRawValue())),
             takeUntil(this.destroy$),
         )
         .subscribe();

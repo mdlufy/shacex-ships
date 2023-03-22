@@ -51,8 +51,8 @@ export class ShipsListComponent implements OnInit {
         this.router.navigate(["./", id], { relativeTo: this.route });
     }
 
-    public onFiltersUpdate(filters: ShipsFilters): void {
-        this.shipsListService.filtersUpdate(filters);
+    public onupdateFilters(filters: ShipsFilters): void {
+        this.shipsListService.updateFilters(filters);
     }
 
     private loadShips(): void {

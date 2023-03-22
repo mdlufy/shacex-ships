@@ -1,13 +1,12 @@
 import { Injectable } from "@angular/core";
 import { ComponentStore, tapResponse } from "@ngrx/component-store";
-import { catchError, map, Observable, of, switchMap, tap } from "rxjs";
+import { map, Observable, of, switchMap, tap } from "rxjs";
 import { LoadingState } from "../../+state/loading-state";
 import { ShipView } from "../../+state/ships-view/ships-view.reducer";
 import { mapShipDtoToShipView } from "../../helpers/ship-mapping.helper";
+import { ShipsCacheService } from "../../ships-cache/ships-cache.service";
 import { ShipDto } from "../../ships-data/ship.dto";
 import { ShipOptions } from "../../ships-data/ships-data.service";
-import { ShipsCacheService } from "../../ships-cache/ships-cache.service";
-import { HttpErrorResponse } from "@angular/common/http";
 
 export interface ShipState {
     loadingState: LoadingState;

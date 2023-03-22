@@ -10,6 +10,8 @@ export interface ShipDto {
     roles: string[];
 }
 
+// TODO: подумать как сделать фильтрацию и пагинацию на беке
+
 export interface ShipsResponseDto {
     docs: ShipDto[];
     totalDocs: number;

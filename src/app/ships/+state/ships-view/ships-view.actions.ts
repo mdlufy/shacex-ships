@@ -2,7 +2,6 @@ import { createAction, props } from "@ngrx/store";
 import { LoadingState } from "../loading-state";
 import { ShipView } from "./ships-view.reducer";
 
-
 export const getShipsViewLoadingState = createAction(
     '[Ships View] Get Ships View Loading State'
 );

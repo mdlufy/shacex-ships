@@ -10,27 +10,12 @@ export const getShipsFilters = createSelector(
     (state: ShipsFiltersState) => state.filters
 );
 
-export const getShipsPaginationLimit = createSelector(
+export const getShipsFiltersFields = createSelector(
     getShipsFiltersState,
-    (state: ShipsFiltersState) => state.pagination.limit
-);
-
-export const getShipsPaginationPage = createSelector(
-    getShipsFiltersState,
-    (state: ShipsFiltersState) => state.pagination.page
+    (state: ShipsFiltersState) => state.filtersFields
 );
 
 export const getShipsPaginationOptions = createSelector(
     getShipsFiltersState,
     (state: ShipsFiltersState) => state.pagination
-);
-
-export const getShipsPaginationTotalPages = createSelector(
-    getShipsFiltersState,
-    (state: ShipsFiltersState) => state.pagination.totalPages
-);
-
-export const getShipsFiltersFields = createSelector(
-    getShipsFiltersState,
-    (state: ShipsFiltersState) => state.filtersFields
 );

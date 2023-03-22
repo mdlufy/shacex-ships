@@ -18,9 +18,4 @@ export const getShipsView = createSelector(
 export const getShipsTypes = createSelector(
     getShipsViewState,
     (state: ShipsViewState) => state.shipsView.map(ship => ship.type)
-    // (state: ShipsViewState) => {
-    //     const shipsTypes = state.shipsView.map(ship => ship.type);
-
-    //     return shipsTypes.filter(shipType => shipType !== null);
-    // }
-)
+);

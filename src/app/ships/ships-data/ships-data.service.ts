@@ -17,17 +17,21 @@ export interface ShipOptions extends Partial<ShipDto> {
 export class ShipsDataService {
     constructor(private readonly http$: HttpClient) {}
 
-    public fetchShips$(): Observable<ShipDto[]> {
-        return this.http$.get<ShipDto[]>(`${initialApiUrl}/v4/ships/`);
-    }
+    // TODO: подумать можно ли сделать и пагинацию, и фильтрацию на беке. 
+    // Проблема: имеется только часть списка, а для фильтров нужны поля из всех элементов
 
-    // public fetchShips$(options: ShipsListOptions | {} = {}): Observable<ShipsResponseDto> {
+    // public fetchShipsWithOptions$(options: ShipsListOptions | {} = {}): Observable<ShipsResponseDto> {
     //     const query = {};
 
     //     return this.http$.post<ShipsResponseDto>(`${initialApiUrl}/v4/ships/query`, { query, options });
     // }
 
+    public fetchShips$(): Observable<ShipDto[]> {
+        return this.http$.get<ShipDto[]>(`${initialApiUrl}/v4/ships`);
+    }
+
     public fetchShipByShipId$({ id }: ShipOptions): Observable<ShipDto> {
         return this.http$.get<ShipDto>(`${initialApiUrl}/v4/ships/${id}`);
     }
+
 }
