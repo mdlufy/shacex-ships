@@ -49,6 +49,14 @@ export class FiltersComponent implements OnInit, OnChanges {
         this._currentShipPorts = ports;
     }
 
+    public get shipsPortsValue(): string {
+        return this.currentShipPorts.length ? `Выбраны ${this.currentShipPorts.length}` : '';
+    }
+
+    public get shipsPortsClasses(): string {
+        return this.currentShipPorts.length ? 'input-blue-border' : '';
+    }
+
     public readonly SHIP_NAME = FilterShipType.SHIP_NAME;
     public readonly SHIP_PORTS_ITEMS = FilterShipType.SHIP_PORTS_ITEMS;
     public readonly SHIP_TYPE = FilterShipType.SHIP_TYPE;

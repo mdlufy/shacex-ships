@@ -76,10 +76,14 @@
 
         padding-bottom: 7px;
 
-
         border: 0;
-
         border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+
+        cursor: pointer;
+
+        &-blue-border {
+            border-bottom: 1px solid #347cff;
+        }
     }
 
     .input:focus {
@@ -135,6 +139,6 @@
     cursor: pointer;
 
     &:hover {
-        border-color: rgba(0, 0, 0, 0.5)
+        border-color: rgba(0, 0, 0, 0.5);
     }
 }

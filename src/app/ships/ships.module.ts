@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { PaginationModule } from "mdlufy-ui";
@@ -31,6 +31,7 @@ const EFFECTS_LIST = [ShipsViewEffects];
     imports: [
         CommonModule,
         ReactiveFormsModule,
+        FormsModule,
         PaginationModule,
         StoreModule.forFeature(FEATURE_SHIPS_VIEW, shipsViewReducer),
         StoreModule.forFeature(FEATURE_SHIPS_FILTERS, shipsFiltersReducer),

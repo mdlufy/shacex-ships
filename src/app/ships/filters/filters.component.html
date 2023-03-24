@@ -7,7 +7,6 @@
         <div class="filters-name">
             <input
                 type="text"
-                id="name"
                 [formControlName]="SHIP_NAME"
                 class="input"
                 placeholder="Название"
@@ -15,10 +14,17 @@
         </div>
 
         <div class="filters-port">
-            <input type="text" class="input" placeholder="Порт" />
+            <input 
+                readonly 
+                type="text" 
+                class="input" 
+                placeholder="Порт" 
+                [value]="shipsPortsValue"
+                [ngClass]="shipsPortsClasses"
+            />
 
             <div class="checkbox-list">
-                <div *ngFor="let port of shipsPorts">
+                <span *ngFor="let port of shipsPorts">
                     <input
                         type="checkbox"
                         [checked]="isCheckboxChecked(port)"
@@ -26,7 +32,7 @@
                         class="checkbox-btn"
                     />
                     <label type="text" class="value">{{ port }}</label>
-                </div>
+                </span>
             </div>
         </div>
 
