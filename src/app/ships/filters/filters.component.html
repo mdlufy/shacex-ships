@@ -2,7 +2,7 @@
     <span class="header-text">Фильтры</span>
 </div>
 
-<form [formGroup]="filtersForm" autocomplete="off">
+<form [formGroup]="filtersForm">
     <div class="filters">
         <lib-input
             [formControlName]="SHIP_NAME"
@@ -10,36 +10,23 @@
             class="filters-name"
         ></lib-input>
 
-        <div class="filters-port">
-            <input
-                readonly
-                type="text"
-                class="input"
-                placeholder="Порт"
-                [value]="shipsPortsValue"
-                [ngClass]="shipsPortsClasses"
-            />
-
-            <div class="checkbox-list">
-                <span *ngFor="let port of shipsPorts">
-                    <input
-                        type="checkbox"
-                        [checked]="isCheckboxChecked(port)"
-                        (change)="onCheckboxChange(port)"
-                        class="checkbox-btn"
-                    />
-                    <label type="text" class="value">{{ port }}</label>
-                </span>
-            </div>
-        </div>
+        <lib-checkbox-list
+            [items]="shipsPorts"
+            [formControlName]="SHIP_PORTS_ITEMS"
+            placeholder="Порт"
+            class="filters-port"
+        ></lib-checkbox-list>
 
         <div class="filters-type">
             <span class="header">Тип</span>
 
-            <lib-radio-list [items]="shipsTypes" [formControlName]="SHIP_TYPE"></lib-radio-list>
+            <lib-radio-list
+                [items]="shipsTypes"
+                [formControlName]="SHIP_TYPE"
+            ></lib-radio-list>
         </div>
 
-        <button type="button" class="reset-btn" (click)="resetFilters()">
+        <button type="button" class="reset-button" (click)="resetFilters()">
             Сбросить фильтры
         </button>
     </div>
