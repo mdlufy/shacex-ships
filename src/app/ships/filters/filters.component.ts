@@ -62,9 +62,9 @@ export class FiltersComponent implements OnInit, OnChanges {
     public readonly SHIP_TYPE = FilterShipType.SHIP_TYPE;
 
     public filtersForm: FormGroup = new FormGroup({
-        [FilterShipType.SHIP_NAME]: new FormControl(),
+        [FilterShipType.SHIP_NAME]: new FormControl(''),
         [FilterShipType.SHIP_PORTS_ITEMS]: new FormControl([], { nonNullable: true }),
-        [FilterShipType.SHIP_TYPE]: new FormControl(), 
+        [FilterShipType.SHIP_TYPE]: new FormControl(''), 
     });
 
     private _currentShipType: string | null;

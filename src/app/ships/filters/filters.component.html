@@ -4,21 +4,18 @@
 
 <form [formGroup]="filtersForm" autocomplete="off">
     <div class="filters">
-        <div class="filters-name">
-            <input
-                type="text"
-                [formControlName]="SHIP_NAME"
-                class="input"
-                placeholder="Название"
-            />
-        </div>
+        <lib-input
+            [formControlName]="SHIP_NAME"
+            placeholder="Название"
+            class="filters-name"
+        ></lib-input>
 
         <div class="filters-port">
-            <input 
-                readonly 
-                type="text" 
-                class="input" 
-                placeholder="Порт" 
+            <input
+                readonly
+                type="text"
+                class="input"
+                placeholder="Порт"
                 [value]="shipsPortsValue"
                 [ngClass]="shipsPortsClasses"
             />
