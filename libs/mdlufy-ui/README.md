@@ -18,6 +18,7 @@ npm i mdlufy-ui
 Components:
 - input
 - radio-list
+- checkbox-list
 - pagination
 
 Pipes:
