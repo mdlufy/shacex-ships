@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
-import { InputModule, PaginationModule } from "mdlufy-ui";
+import { InputModule, PaginationModule, RadioListModule } from "mdlufy-ui";
 import { shipsFiltersReducer } from "./+state/ships-filters/ships-filters.reducer";
 import { FEATURE_SHIPS_FILTERS } from "./+state/ships-filters/ships-filters.selectors";
 import { ShipsViewEffects } from "./+state/ships-view/ships-view.effects";
@@ -34,6 +34,7 @@ const EFFECTS_LIST = [ShipsViewEffects];
         FormsModule,
         PaginationModule,
         InputModule,
+        RadioListModule,
         StoreModule.forFeature(FEATURE_SHIPS_VIEW, shipsViewReducer),
         StoreModule.forFeature(FEATURE_SHIPS_FILTERS, shipsFiltersReducer),
         EffectsModule.forFeature(EFFECTS_LIST),

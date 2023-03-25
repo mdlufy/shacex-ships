@@ -15,8 +15,8 @@ import { distinctUntilChanged, Observable, takeUntil, tap } from "rxjs";
 import { ShipsFilters } from "../+state/ships-filters/ships-filters.reducer";
 import { FilterShipType } from "./filter-types";
 
-// TODO: оформить фильтры как библиотечные решения в mdlufy-ui: 
-// вынести в отдельные компоненты, реализующие ControlValueAccessor
+// TODO: оформить фильтр чекбоксов как библиотечное решение в mdlufy-ui: 
+// вынести в отдельный компонент, реализующий ControlValueAccessor
 
 @Component({
     selector: "app-filters",
@@ -32,14 +32,6 @@ export class FiltersComponent implements OnInit, OnChanges {
     @Input() shipsTypes: string[];
 
     @Output() updateFilters = new EventEmitter<ShipsFilters>();
-
-    public get currentShipType(): string | null {
-        return this._currentShipType;
-    }
-
-    public set currentShipType(value: string | null) {
-        this._currentShipType = value;
-    }
 
     public get currentShipPorts(): string[] {
         return this._currentShipPorts;
@@ -67,7 +59,6 @@ export class FiltersComponent implements OnInit, OnChanges {
         [FilterShipType.SHIP_TYPE]: new FormControl(''), 
     });
 
-    private _currentShipType: string | null;
     private _currentShipPorts: string[];
 
     constructor(@Inject(DestroyService) private readonly destroy$: Observable<void>) {}
@@ -86,10 +77,6 @@ export class FiltersComponent implements OnInit, OnChanges {
         return this.currentShipPorts.includes(value);
     }
 
-    public isRadioChecked(value: string): boolean {
-        return value === this.currentShipType;
-    }
-
     public onCheckboxChange(shipPort: string): void {
         const shipPortsItems: string[] = this.filtersForm.get(this.SHIP_PORTS_ITEMS)?.value;
 
@@ -102,14 +89,7 @@ export class FiltersComponent implements OnInit, OnChanges {
         this.filtersForm.patchValue({ [FilterShipType.SHIP_PORTS_ITEMS]: shipPortsItems.filter(port => port !== shipPort) });
     }
 
-    public onRadioChange(shipType: string): void {
-        this.currentShipType = this.shipsTypes.find(type => type === shipType) as string;
-
-        this.filtersForm.patchValue({ [FilterShipType.SHIP_TYPE]: this.currentShipType });
-    }
-
     public resetFilters(): void {
-        this.currentShipType = null;
         this.currentShipPorts = [];
 
         this.filtersForm.reset();
@@ -118,7 +98,6 @@ export class FiltersComponent implements OnInit, OnChanges {
     private setFiltersFormFields(filtersForm: ShipsFilters): void {
         this.filtersForm.setValue(filtersForm, { emitEvent: false });
 
-        this.currentShipType = filtersForm.shipType
         this.currentShipPorts = filtersForm.shipPortsItems;
     }
 

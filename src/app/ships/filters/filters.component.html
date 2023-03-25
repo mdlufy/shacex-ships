@@ -36,15 +36,7 @@
         <div class="filters-type">
             <span class="header">Тип</span>
 
-            <div *ngFor="let type of shipsTypes">
-                <input
-                    type="radio"
-                    [checked]="isRadioChecked(type)"
-                    (change)="onRadioChange(type)"
-                    class="radio-btn"
-                />
-                <label type="text" class="value">{{ type }}</label>
-            </div>
+            <lib-radio-list [items]="shipsTypes" [formControlName]="SHIP_TYPE"></lib-radio-list>
         </div>
 
         <button type="button" class="reset-btn" (click)="resetFilters()">
