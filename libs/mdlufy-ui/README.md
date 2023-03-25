@@ -15,4 +15,15 @@ npm i mdlufy-ui
 
 ## Docs
 
+Components:
+- input
+- radio-list
+- pagination
+
+Pipes:
+- paginator
+
+Services:
+- destroy-service
+
 Coming soon...
